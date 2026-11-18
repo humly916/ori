@@ -59,7 +59,7 @@ static void MX_TIM3_Init(void);
 /* USER CODE BEGIN 0 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {if(htim->Instance == TIM3){tick++;
-if(tick%500u == 0u){HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_0);};};
+if(tick%250u == 0u){HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_0);};};
 }
 /* USER CODE END 0 */
 
