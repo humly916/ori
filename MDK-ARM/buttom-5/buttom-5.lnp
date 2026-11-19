@@ -1,0 +1,21 @@
+--cpu Cortex-M3
+"buttom-5\startup_stm32f103xb.o"
+"buttom-5\main.o"
+"buttom-5\stm32f1xx_it.o"
+"buttom-5\stm32f1xx_hal_msp.o"
+"buttom-5\stm32f1xx_hal_gpio_ex.o"
+"buttom-5\stm32f1xx_hal.o"
+"buttom-5\stm32f1xx_hal_rcc.o"
+"buttom-5\stm32f1xx_hal_rcc_ex.o"
+"buttom-5\stm32f1xx_hal_gpio.o"
+"buttom-5\stm32f1xx_hal_dma.o"
+"buttom-5\stm32f1xx_hal_cortex.o"
+"buttom-5\stm32f1xx_hal_pwr.o"
+"buttom-5\stm32f1xx_hal_flash.o"
+"buttom-5\stm32f1xx_hal_flash_ex.o"
+"buttom-5\stm32f1xx_hal_exti.o"
+"buttom-5\system_stm32f1xx.o"
+--strict --scatter "buttom-5\buttom-5.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "buttom-5.map" -o buttom-5\buttom-5.axf
