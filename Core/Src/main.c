@@ -44,7 +44,7 @@
 TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
-volatile __UINT32_TYPE__ tick =0;
+volatile uint32_t tick =0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
