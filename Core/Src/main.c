@@ -97,11 +97,14 @@ int main(void)
   while (1)
   { now=HAL_GetTick();
 		if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5)!=keynow){HAL_Delay(20);
-			if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5)!=keynow){keynow=HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5);now=HAL_GetTick();};
-		if(keylast==1&&keynow==0){t1=now;zt=0;};
-		if(keylast==0&&keynow==1&&zt==0){HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_0);XX=1;}keylast=keynow;};
-		if(now-t1>=1000u&&XX==1&&keylast==0){zt=1;XX=0;};
-		if(zt==1&&now-tick>=250u){tick=now;HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_0);}
+			if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5)!=keynow){keynow=HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5);now=HAL_GetTick();};};
+		if(keylast==1&&keynow==0){t1=now;keylast=keynow;};
+		if(keylast==0&&keynow==1&&now-t1<1000u){zt=1;XX=0;keylast=keynow;HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_0);};
+		if(now-t1>=1000u&&keylast==0&&keynow==1&&XX==0){zt=0;XX=1;keylast=keynow;};
+		if(now-t1>=1000u&&keylast==0&&keynow==1&&XX==1){XX=0;zt=1;keylast=keynow;};
+		if(XX==1&&now-tick>=250u){tick=now;HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_0);};
+		
+		
 		
     /* USER CODE END WHILE */
 
