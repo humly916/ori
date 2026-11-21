@@ -43,7 +43,7 @@
 
 /* USER CODE BEGIN PV */
 uint32_t now=0,last=0,t1=0,tick=0;
-uint8_t keylast=1,zt=0,XX=0;
+uint8_t keylast=1,zt=0,XX=0,keynow=1;
 
 /* USER CODE END PV */
 
@@ -96,7 +96,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   { now=HAL_GetTick();
-		if(now-last>=20u){uint8_t keynow=HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5);last=now;
+		if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5)!=keynow){HAL_Delay(20);
+			if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5)!=keynow){keynow=HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5);now=HAL_GetTick();};
 		if(keylast==1&&keynow==0){t1=now;zt=0;};
 		if(keylast==0&&keynow==1&&zt==0){HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_0);XX=1;}keylast=keynow;};
 		if(now-t1>=1000u&&XX==1&&keylast==0){zt=1;XX=0;};
