@@ -42,8 +42,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint32_t last=0,now=0,t1=0,chisu=0;
-uint16_t levellast=1,levelnow=0;
+uint32_t now=0,t1=0,chisu=0;
+uint16_t levellast=1,levelnow=1;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -95,14 +95,15 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   { now=HAL_GetTick();
-		if(now-last>=20u){levelnow=HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5);
-		last=now;
+		if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5)!=levelnow){
+			HAL_Delay(20);
+		if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5)!=levelnow){levelnow=!levelnow;now=HAL_GetTick();};}
 		if(levellast==1&&levelnow==0){                        
 		if(chisu==0){chisu=1;t1=now;}                    
 		else if(chisu==1&&(now-t1)<500u){                 
 		HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_0);chisu=0;}};
 		if(chisu==1&&(now-t1)>=500u){chisu=0;};               
-		levellast=levelnow;};
+		levellast=levelnow;
 		 
     /* USER CODE END WHILE */
 
